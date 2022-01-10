@@ -12,23 +12,68 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## packages I used for this Project:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+1- Material UI and Icons
+[`npm install @material-ui/core`]
+[`npm install @material-ui/icons`]
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2- React Bootstrap
+[`npm install react-bootstrap bootstrap@5.1.3`]
 
-## Learn More
+```/* The following line can be included in a src/App.scss */
 
-To learn more about Next.js, take a look at the following resources:
+@import "~bootstrap/scss/bootstrap";
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+/* The following line can be included in your src/index.js or App.js file */
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+import './App.scss';
+```
 
-## Deploy on Vercel
+3- Axios
+[`npm install axios`]
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4- bcrypt for hashing the password
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```https://www.npmjs.com/package/bcrypt
+[`npm i bcrypt`]
+```
+
+5- Install Formik for forms
+[`npm install formik --save`]
+
+6- Install Yup for validation
+[`npm install yup`]
+
+7- https://mongoosejs.com/
+[`npm i mongoose`]
+
+8- NextAuth.js for authentication
+[`npm i next-auth`]
+
+9- react-toastify for notifications
+
+[`npm i react-toastify`]
+
+1-react-masonry-css
+https://www.npmjs.com/package/react-masonry-css
+[`npm i react-masonry-css`]
+
+```.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  background: grey;
+  margin-bottom: 30px;
+}
+```
