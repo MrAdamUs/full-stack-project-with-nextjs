@@ -59,7 +59,8 @@ import './App.scss';
 https://www.npmjs.com/package/react-masonry-css
 [`npm i react-masonry-css`]
 
-```.my-masonry-grid {
+```
+.my-masonry-grid {
   display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
