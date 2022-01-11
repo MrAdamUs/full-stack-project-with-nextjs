@@ -23,7 +23,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ```/* The following line can be included in a src/App.scss */
 
-@import "~bootstrap/scss/bootstrap";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 /* The following line can be included in your src/index.js or App.js file */
 
