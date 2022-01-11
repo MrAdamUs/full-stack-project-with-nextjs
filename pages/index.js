@@ -1,7 +1,9 @@
+import Featured from "components/home/featured"
+
 const Home = () => {
   return (
     <>
-      <h1>Hello World!</h1>
+      <Featured />
     </>
   )
 }
