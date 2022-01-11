@@ -80,3 +80,6 @@ https://www.npmjs.com/package/react-masonry-css
   margin-bottom: 30px;
 }
 ```
+
+- 10 Install Redux
+  [`npm install redux react-redux redux-devtools-extension next-redux-wrapper redux-thunk`]

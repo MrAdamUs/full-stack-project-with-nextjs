@@ -3,14 +3,23 @@ import "../styles/globals.css"
 
 import MainLayout from "components/ui/layout.main.js"
 
+import { Provider } from "react-redux"
+import store from "store"
+import { createWrapper } from "next-redux-wrapper"
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
+      <Provider store={store}>
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
+      </Provider>
     </>
   )
 }
 
-export default MyApp
+const makeStore = () => store
+const wrapper = createWrapper(makeStore)
+
+export default wrapper.withRedux(MyApp)
