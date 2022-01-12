@@ -1,5 +1,5 @@
-import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/globals.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 import MainLayout from "components/ui/layout.main.js"
 
