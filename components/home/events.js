@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 // import { Button } from "@material-ui/core"
 import Button from "@material-ui/core/Button"
-const Events = () => {
+const EventsPage = () => {
   return (
     <>
       <section className='page-section'>
@@ -94,4 +94,4 @@ const Events = () => {
   )
 }
 
-export default Events
+export default EventsPage
