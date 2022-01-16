@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button"
 import axios from "axios"
 
 const SignIn = () => {
-  const [fromType, setFormType] = useState(false)
+  const [formType, setFormType] = useState(false)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
@@ -18,9 +18,9 @@ const SignIn = () => {
     initialValues: { email: "", password: "" },
     validationSchema: Yup.object({
       email: Yup.string()
-        .required("Email is required")
-        .email("This is not a valid email"),
-      password: Yup.string().required("Password is required"),
+        .required("Sorry the email is required")
+        .email("This is no a valid email"),
+      password: Yup.string().required("Sorry, the password is required"),
     }),
     onSubmit: (values) => {
       console.log(values)
@@ -28,13 +28,13 @@ const SignIn = () => {
   })
 
   const handleFormType = () => {
-    setFormType(!fromType)
+    setFormType(!formType)
   }
 
   return (
     <div className='container full_vh small top-space'>
       <>
-        <h1>{fromType ? "Register" : "Sign in"}</h1>
+        <h1>{formType ? "Register" : "Sign in"}</h1>
         <form className='mt-3' onSubmit={formik.handleSubmit}>
           <div className='form-group'>
             <TextField
@@ -44,7 +44,7 @@ const SignIn = () => {
               variant='outlined'
               {...formik.getFieldProps("email")}
               {...errorHelper(formik, "email")}
-            ></TextField>
+            />
           </div>
 
           <div className='form-group'>
@@ -56,7 +56,7 @@ const SignIn = () => {
               type='password'
               {...formik.getFieldProps("password")}
               {...errorHelper(formik, "password")}
-            ></TextField>
+            />
           </div>
 
           <div className='mb-3'>
@@ -67,18 +67,17 @@ const SignIn = () => {
               size='small'
               className='mr-2'
             >
-              {fromType ? "Register" : "Sign In"}
+              {formType ? "Register" : "Sign in"}
             </Button>
-
             <Button
               variant='contained'
               color='default'
               size='small'
               onClick={handleFormType}
             >
-              {fromType
-                ? "Already registerd, click here"
-                : "Already signed, click here"}
+              {formType
+                ? "Already registered, click here"
+                : "Already signed in, click here"}
             </Button>
           </div>
         </form>
