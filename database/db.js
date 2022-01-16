@@ -8,8 +8,17 @@ export default async function connectToDb() {
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: true,
-      useCreateIndex: true,
+    },
+    (err) => {
+      if (err) throw err
+      console.log("Connected to MongoDB!!!")
     }
   )
 }
+
+// {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: true,
+//     useCreateIndex: true,
+//   }

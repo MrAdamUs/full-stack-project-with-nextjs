@@ -1,8 +1,10 @@
+import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import { errorHelper } from "helper/functions"
+const Loader = dynamic(() => import("helper/loader"))
 
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
@@ -23,9 +25,25 @@ const SignIn = () => {
       password: Yup.string().required("Sorry, the password is required"),
     }),
     onSubmit: (values) => {
-      console.log(values)
+      submitForm(values)
     },
   })
+
+  const submitForm = async (values) => {
+    if (formType) {
+      /// register
+      axios
+        .post("/api/auth/register", values)
+        .then((response) => {
+          console.log(response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    } else {
+      ///login
+    }
+  }
 
   const handleFormType = () => {
     setFormType(!formType)

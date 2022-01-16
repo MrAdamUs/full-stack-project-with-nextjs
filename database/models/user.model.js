@@ -18,17 +18,17 @@ const userSchema = mongoose.Schema({
     type: String,
     trim: true,
   },
-  fistname: {
+  firstname: {
     type: String,
     maxlength: 150,
     trim: true,
-    default: "User Name",
+    default: "Your name",
   },
   lastname: {
     type: String,
     maxlength: 150,
     trim: true,
-    default: "User lastname",
+    default: "Your lastname",
   },
   role: {
     type: String,
@@ -37,5 +37,6 @@ const userSchema = mongoose.Schema({
   },
 })
 
-const User = mongoose.model.User || mongoose.model("User", userSchema)
+const User = mongoose.models.User || mongoose.model("User", userSchema)
+
 export default User
