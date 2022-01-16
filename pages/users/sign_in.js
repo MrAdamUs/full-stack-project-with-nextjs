@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
+import { errorHelper } from "helper/functions"
 
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
@@ -42,6 +43,7 @@ const SignIn = () => {
               label='Enter your email'
               variant='outlined'
               {...formik.getFieldProps("email")}
+              {...errorHelper(formik, "email")}
             ></TextField>
           </div>
 
@@ -53,6 +55,7 @@ const SignIn = () => {
               variant='outlined'
               type='password'
               {...formik.getFieldProps("password")}
+              {...errorHelper(formik, "password")}
             ></TextField>
           </div>
 
