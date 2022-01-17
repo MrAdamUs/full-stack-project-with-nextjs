@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic"
+import { signIn, getSession } from "next-auth/client"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { useFormik } from "formik"
@@ -30,6 +31,7 @@ const SignIn = () => {
   })
 
   const submitForm = async (values) => {
+    setLoading(true)
     if (formType) {
       /// register
       axios
@@ -38,10 +40,23 @@ const SignIn = () => {
           console.log(response.data)
         })
         .catch((error) => {
+          setLoading(false)
           console.log(error)
         })
     } else {
       ///login
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: values.email,
+        password: values.password,
+      })
+      if (result.error) {
+        ///
+        setLoading(false)
+        console.log(result.error)
+      } else {
+        console.log(result)
+      }
     }
   }
 
@@ -51,55 +66,59 @@ const SignIn = () => {
 
   return (
     <div className='container full_vh small top-space'>
-      <>
-        <h1>{formType ? "Register" : "Sign in"}</h1>
-        <form className='mt-3' onSubmit={formik.handleSubmit}>
-          <div className='form-group'>
-            <TextField
-              style={{ width: "100%" }}
-              name='email'
-              label='Enter your email'
-              variant='outlined'
-              {...formik.getFieldProps("email")}
-              {...errorHelper(formik, "email")}
-            />
-          </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <h1>{formType ? "Register" : "Sign in"}</h1>
+          <form className='mt-3' onSubmit={formik.handleSubmit}>
+            <div className='form-group'>
+              <TextField
+                style={{ width: "100%" }}
+                name='email'
+                label='Enter your email'
+                variant='outlined'
+                {...formik.getFieldProps("email")}
+                {...errorHelper(formik, "email")}
+              />
+            </div>
 
-          <div className='form-group'>
-            <TextField
-              style={{ width: "100%" }}
-              name='password'
-              label='Enter your password'
-              variant='outlined'
-              type='password'
-              {...formik.getFieldProps("password")}
-              {...errorHelper(formik, "password")}
-            />
-          </div>
+            <div className='form-group'>
+              <TextField
+                style={{ width: "100%" }}
+                name='password'
+                label='Enter your password'
+                variant='outlined'
+                type='password'
+                {...formik.getFieldProps("password")}
+                {...errorHelper(formik, "password")}
+              />
+            </div>
 
-          <div className='mb-3'>
-            <Button
-              variant='contained'
-              color='primary'
-              type='submit'
-              size='small'
-              className='mr-2'
-            >
-              {formType ? "Register" : "Sign in"}
-            </Button>
-            <Button
-              variant='contained'
-              color='default'
-              size='small'
-              onClick={handleFormType}
-            >
-              {formType
-                ? "Already registered, click here"
-                : "Already signed in, click here"}
-            </Button>
-          </div>
-        </form>
-      </>
+            <div className='mb-3'>
+              <Button
+                variant='contained'
+                color='primary'
+                type='submit'
+                size='small'
+                className='mr-2'
+              >
+                {formType ? "Register" : "Sign in"}
+              </Button>
+              <Button
+                variant='contained'
+                color='default'
+                size='small'
+                onClick={handleFormType}
+              >
+                {formType
+                  ? "Already registered, click here"
+                  : "Already signed in, click here"}
+              </Button>
+            </div>
+          </form>
+        </>
+      )}
     </div>
   )
 }

@@ -1,0 +1,35 @@
+import NextAuth from "next-auth"
+import Providers from "next-auth/providers"
+import connectToDb from "database/db"
+import { findUserByEmail } from "database/services/user.service"
+import { passwordCheck } from "database/utils/tools"
+
+export default NextAuth({
+  session: {
+    jwt: true,
+  },
+  providers: [
+    Providers.Credentials({
+      async authorize(credentials) {
+        await connectToDb()
+
+        // check if  User exists
+        const user = await findUserByEmail(credentials.email)
+        if (!user) {
+          throw new Error("No email was found")
+        }
+
+        // Check pwd
+        if (!(await passwordCheck(credentials.password, user.password))) {
+          throw new Error("Wrong password")
+        }
+
+        return {
+          _id: user._id,
+          email: user.email,
+          role: user.role,
+        }
+      },
+    }),
+  ],
+})

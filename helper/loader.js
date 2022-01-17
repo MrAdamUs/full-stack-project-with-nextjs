@@ -1,6 +1,6 @@
-import { CircularProgress } from "@material-ui/core/CircularProgress"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
-const Loader = () => (
+const Loader = ({ full }) => (
   <div className={`root_loader ${full ? "full" : ""}`}>
     <CircularProgress />
   </div>
