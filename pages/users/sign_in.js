@@ -11,11 +11,14 @@ import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 
 import axios from "axios"
+import { useDispatch } from "react-redux"
+import { successDispatcher } from "store/actions/notifications.action"
 
 const SignIn = () => {
   const [formType, setFormType] = useState(false)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: { email: "", password: "" },
@@ -41,7 +44,7 @@ const SignIn = () => {
         })
         .catch((error) => {
           setLoading(false)
-          console.log(error)
+          dispatch(errorDispatcher(error.response.data.message))
         })
     } else {
       ///login
@@ -53,7 +56,7 @@ const SignIn = () => {
       if (result.error) {
         ///
         setLoading(false)
-        console.log(result.error)
+        dispatch(errorDispatcher(result.error))
       } else {
         console.log(result)
       }
