@@ -83,3 +83,6 @@ https://www.npmjs.com/package/react-masonry-css
 
 - 10 Install Redux
   [`npm install redux react-redux redux-devtools-extension next-redux-wrapper redux-thunk`]
+
+-11 Install next-connect
+[`npm install next-connect`]
