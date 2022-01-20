@@ -7,12 +7,9 @@ const handler = nc()
 handler
   .use(checkAuth)
   .get(async (req, res) => {
-    //
     console.log(req.session.user._id)
     res.statusCode(200).json({ ok: "ok" })
   })
-  .path(async (req, res) => {
-    //
-  })
+  .path(async (req, res) => {})
 
 export default handler
