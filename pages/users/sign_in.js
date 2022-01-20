@@ -48,7 +48,7 @@ const SignIn = () => {
           dispatch(errorDispatcher(error.response.data.message))
         })
     } else {
-      ///login
+      ///Sing in
       const result = await signIn("credentials", {
         redirect: false,
         email: values.email,
