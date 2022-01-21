@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { useDispatch, useSelector } from "react-redux"
+import { userSignOut } from "store/actions/user.action"
 
 const Header = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
   const [small, setSmall] = useState(false)
+  const user = useSelector((state) => state.user)
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () =>
@@ -12,6 +16,11 @@ const Header = () => {
       )
     }
   }, [])
+
+  const signOutUser = () => {
+    dispatch(userSignOut("See you later"))
+    router.push("/")
+  }
 
   return (
     <nav
@@ -40,26 +49,28 @@ const Header = () => {
                 <a className='nav-link'>Contact</a>
               </Link>
             </li>
-
-            <li className='nav-item'>
-              <Link href={"/users/sign_in"}>
-                <a className='nav-link'>Sign in</a>
-              </Link>
-            </li>
-
-            <>
+            {user && !user.auth ? (
               <li className='nav-item'>
-                <Link href={"/users/dashboard"}>
-                  <a className='nav-link'>Dashboard</a>
+                <Link href={"/users/sign_in"}>
+                  <a className='nav-link'>Sign in</a>
                 </Link>
               </li>
+            ) : null}
+            {user && user.auth ? (
+              <>
+                <li className='nav-item'>
+                  <Link href={"/users/dashboard"}>
+                    <a className='nav-link'>Dashboard</a>
+                  </Link>
+                </li>
 
-              <li className='nav-item'>
-                <a className='nav-link' onClick={() => console.log("Sign out")}>
-                  Sign out
-                </a>
-              </li>
-            </>
+                <li className='nav-item'>
+                  <a className='nav-link' onClick={signOutUser}>
+                    Sign out
+                  </a>
+                </li>
+              </>
+            ) : null}
           </ul>
         </div>
       </div>
